@@ -55,7 +55,7 @@ app.post('/products', (req, res) => {
 
     const { title, body } = req.body;
 
-    let sql = 'INSERT INTO products (title, body) VALUES (cartas yugioh, cartas magic)';
+    let sql = 'INSERT INTO products (title, body) VALUES (?, ?)';
 
     db.query(sql, [title, body], (err, result) => {
 
@@ -64,6 +64,25 @@ app.post('/products', (req, res) => {
         console.log(result);
 
         res.send('New product added...');
+
+    })
+
+})
+
+// Endpoint para crear una categoría nueva
+app.post('/categories', (req, res) => {
+
+    const { title, body } = req.body;
+
+    let sql = 'INSERT INTO categories (title, body) VALUES (?, ?)';
+
+    db.query(sql, [title, body], (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send('New category added...');
 
     })
 
