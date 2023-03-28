@@ -107,3 +107,23 @@ app.put('/products/:id', (req, res) => {
     })
 
 })
+
+// Endpoint para actualizar una categoría
+app.put('/categories/:id', (req, res) => {
+
+    const categoryId = req.params.id;
+    const { title, body } = req.body;
+
+    let sql = 'UPDATE categories SET title = ?, body = ? WHERE id = ?';
+
+    db.query(sql, [title, body, categoryId], (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send('Category updated...');
+
+    })
+
+})
