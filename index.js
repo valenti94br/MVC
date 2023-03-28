@@ -161,3 +161,71 @@ app.get('/categories', (req, res) => {
     })
 
 })
+
+// Endpoint para seleccionar un producto por id
+app.get('/products/:id', (req, res) => {
+
+    let sql = `SELECT * FROM products WHERE id = ${req.params.id}`;
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
+
+// Endpoint para mostrar los productos de forma descendente
+app.get('/products/desc', (req, res) => {
+
+    let sql = 'SELECT * FROM products ORDER BY id DESC';
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
+
+// Endpoint para seleccionar una categoría por id
+app.get('/categories/:id', (req, res) => {
+
+    let sql = `SELECT * FROM categories WHERE id = ${req.params.id}`;
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
+
+// Endpoint para buscar un producto por su nombre
+app.get('/products/search/:name', (req, res) => {
+
+    let sql = `SELECT * FROM products WHERE title LIKE '%${req.params.name}%'`;
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
