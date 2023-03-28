@@ -127,3 +127,37 @@ app.put('/categories/:id', (req, res) => {
     })
 
 })
+
+// Endpoint para mostrar todos los productos
+app.get('/products', (req, res) => {
+
+    let sql = 'SELECT * FROM products';
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
+
+// Endpoint para mostrar todas las categorías
+app.get('/categories', (req, res) => {
+
+    let sql = 'SELECT * FROM categories';
+
+    db.query(sql, (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send(result);
+
+    })
+
+})
