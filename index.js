@@ -87,3 +87,23 @@ app.post('/categories', (req, res) => {
     })
 
 })
+
+// endpoint para actualizar un producto
+app.put('/products/:id', (req, res) => {
+
+    const productId = req.params.id;
+    const { title, body } = req.body;
+
+    let sql = 'UPDATE products SET title = ?, body = ? WHERE id = ?';
+
+    db.query(sql, [title, body, productId], (err, result) => {
+
+        if (err) throw err;
+
+        console.log(result);
+
+        res.send('Product updated...');
+
+    })
+
+})
