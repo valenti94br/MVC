@@ -229,3 +229,23 @@ app.get('/products/search/:name', (req, res) => {
     })
 
 })
+
+// Endpoint para eliminar un producto por su id
+app.delete('/productos/:id', (req, res) => {
+    const id = req.params.id;
+  
+    const sql = `DELETE FROM products WHERE id = ?`;
+  
+    db.query(sql, id, (err, result) => {
+      if (err) throw err;
+  
+      console.log(result);
+  
+      if (result.affectedRows === 0) {
+        res.status(404).send("Producto no encontrado");
+      } else {
+        res.send("Producto eliminado exitosamente");
+      }
+    });
+  });
+  
